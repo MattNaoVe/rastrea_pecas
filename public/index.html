@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sistema de Rastreabilidade Industrial</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Biblioteca QR Code -->
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<!-- Bibliotecas para gerar o PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="topo">
+
+        <h3 class="empresa">
+            AMSTED MAXION
+        </h3>
+
+        <h1>
+            Sistema de Rastreabilidade Industrial
+        </h1>
+
+        <p class="subtitulo">
+            Monitoramento e rastreamento de peças em tempo real
+        </p>
+
+    </div>
+
+    <!-- SCANNER -->
+    <div class="scanner-card">
+
+        <h2>Leitura de QR Code</h2>
+
+        <p class="descricao">
+            Escaneie o QR Code da peça para consultar informações de produção, localização e movimentação no processo industrial.
+        </p>
+
+        <div id="reader"></div>
+
+    </div>
+
+    <!-- AÇÕES -->
+    <div class="acoes">
+
+        <select id="local">
+            <option value="">Selecione o novo setor da peça</option>
+        </select>
+
+        <button onclick="atualizarLocal()">
+            Registrar Movimentação
+        </button>
+
+    </div>
+
+    <!-- RESULTADO + BOTÃO PDF -->
+    <div class="resultado-wrap">
+
+        <a class="btn-download" href="#" onclick="baixarPDF(); return false;">
+            Baixar PDF
+        </a>
+
+        <div id="resultado">
+
+            <h2>Informações da Peça</h2>
+
+            <p>
+                Aguarde a leitura de um QR Code para visualizar os dados de rastreabilidade.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- CADASTRO DE PEÇA -->
+    <div class="scanner-card cadastro-card">
+
+        <h2>Cadastrar Peça</h2>
+
+        <form id="formCadastro" class="form-cadastro" onsubmit="cadastrarPeca(event)">
+
+            <div class="campo">
+                <label for="cadId">Código</label>
+                <input type="text" id="cadId" placeholder="Ex.: B04" required>
+            </div>
+
+            <div class="campo">
+                <label for="cadLote">Lote</label>
+                <input type="text" id="cadLote" placeholder="Ex.: LT2025" required>
+            </div>
+
+            <div class="campo">
+                <label for="cadData">Data de fabricação</label>
+                <input type="date" id="cadData" required>
+            </div>
+
+            <div class="campo">
+                <label for="cadHorario">Horário</label>
+                <input type="time" id="cadHorario" required>
+            </div>
+
+            <div class="campo">
+                <label for="cadLocal">Local</label>
+                <select id="cadLocal" required>
+                    <option value="">Selecione o local</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="cadStatus">Status</label>
+                <input type="text" id="cadStatus" placeholder="Ex.: Em Produção" required>
+            </div>
+
+            <button type="submit" class="btn-cadastrar">Cadastrar</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- SCRIPT PRINCIPAL -->
+<script src="script.js"></script>
+
+</body>
+</html>
